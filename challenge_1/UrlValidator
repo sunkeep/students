@@ -1,0 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sec.url;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ *
+ * @author peti
+ */
+public class UrlValidator {
+
+    public static void main(String[] args) {
+        System.out.println(allowedUrl("https:index.hu"));
+        System.out.println(allowedUrl("javascript:alert(1)"));
+        System.out.println(allowedUrl("  javascript:alert(1)"));
+        System.out.println(allowedUrl("http:google.com"));
+        System.out.println(allowedUrl("https://google.com"));
+
+    }
+
+    public static boolean allowedUrl(String url) {
+        try {
+            URL urlO = new URL(url);
+            String protocol = urlO.getProtocol();
+            return "https".equals(protocol);
+        } catch (MalformedURLException ex) {
+            return false;
+        }
+    }
+}
